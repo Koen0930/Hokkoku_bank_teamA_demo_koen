@@ -1,0 +1,11 @@
+id,name,email,role,skill_level
+1,田中太郎,tanaka@hokkoku-bank.co.jp,manager,5
+2,佐藤花子,sato@hokkoku-bank.co.jp,senior_staff,4
+3,鈴木一郎,suzuki@hokkoku-bank.co.jp,staff,3
+4,高橋美咲,takahashi@hokkoku-bank.co.jp,manager,5
+5,伊藤健太,ito@hokkoku-bank.co.jp,staff,2
+6,渡辺由美,watanabe@hokkoku-bank.co.jp,senior_staff,4
+7,山本直樹,yamamoto@hokkoku-bank.co.jp,manager,5
+8,中村麻衣,nakamura@hokkoku-bank.co.jp,staff,3
+9,小林大輔,kobayashi@hokkoku-bank.co.jp,manager,4
+10,加藤愛子,kato@hokkoku-bank.co.jp,senior_staff,3

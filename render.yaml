@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: hokkoku-llm-backend-${RENDER_SUFFIX}
+    env: docker
+    plan: free
+    autoDeploy: true
+    dockerfilePath: hokkoku_backend/Dockerfile
+    healthCheckPath: /docs
+    envVars:
+      - key: MOCK_OPENAI
+        value: "true"
+      - key: CORS_ALLOW_ORIGINS
+        value: "*"
+      - key: INTENT_THRESHOLD
+        value: "0.7"
+      - key: OPENAI_MODEL
+        value: "gpt-4o-mini"

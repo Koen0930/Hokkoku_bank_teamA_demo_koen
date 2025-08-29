@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hokkoku Shift LLM Demo</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";margin:0;padding:0;background:#f8fafc}
+header{background:#0f172a;color:#fff;padding:12px 16px}
+main{max-width:960px;margin:0 auto;padding:16px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:16px;margin-bottom:16px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+label{font-size:14px;color:#334155;margin-right:4px}
+select,input,button,textarea{font-size:14px;border:1px solid #cbd5e1;border-radius:6px;padding:8px}
+button{background:#0ea5e9;color:#fff;border:none;cursor:pointer}
+button:disabled{background:#94a3b8;cursor:not-allowed}
+#log{height:280px;overflow:auto;background:#0b1021;color:#e2e8f0;padding:12px;border-radius:6px;white-space:pre-wrap}
+.bubble{border:1px solid #e5e7eb;border-radius:8px;padding:8px;margin:6px 0}
+.bubble.user{background:#ecfeff}
+.bubble.assistant{background:#f8fafc}
+.small{font-size:12px;color:#475569}
+.ok{color:#16a34a}
+.err{color:#dc2626}
+</style>
+</head>
+<body>
+<header>
+  <div>Hokkoku Shift LLM Demo <span id="modeLabel" class="small" style="margin-left:8px; opacity:.85"></span></div>
+  <div class="small" style="opacity:.8">このUIは検証用です。APIは /api/*、設定は /api/config で確認できます。</div>
+</header>
+<main>
+  <div class="card">
+    <div class="row">
+      <label>セッション</label>
+      <button id="btnCreateSession">新規作成</button>
+      <input id="sessionId" placeholder="session_id" size="40">
+      <span id="sessionStatus" class="small"></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="row" style="margin-bottom:8px">
+      <label>モード</label>
+      <select id="mode">
+        <option value="qa">Q&amp;A</option>
+        <option value="apply">適用案</option>
+      </select>
+      <button id="btnSend">送信</button>
+    </div>
+    <textarea id="content" rows="3" style="width:100%" placeholder="例）週末の最小人員を+1に"></textarea>
+    <div id="chat"></div>
+  </div>
+
+  <div class="card">
+    <div class="row" style="margin-bottom:8px">
+      <label>制約JSON</label>
+      <button id="btnValidate">検証</button>
+      <button id="btnApply">適用(管理者)</button>
+    </div>
+    <textarea id="constraints" rows="6" style="width:100%">{ "min_staff_weekend": 2 }</textarea>
+    <div id="validateResult" class="small"></div>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <span>ログ</span>
+      <button id="btnClear">クリア</button>
+    </div>
+    <div id="log"></div>
+  </div>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>

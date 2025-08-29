@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: session-20250815/Dockerfile
+    image: hokkoku-llm-backend:latest
+    environment:
+      # 値は .env（env.exampleをコピーして作成）などから供給
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - MOCK_OPENAI=false
+      - OPENAI_MODEL=gpt-4o-mini
+      - CORS_ALLOW_ORIGINS=*
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/healthz"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

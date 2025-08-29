@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./hokkoku_backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - PYTHONPATH=/app
+      - MOCK_OPENAI=false
+      - OPENAI_MODEL=gpt-4o-mini
+      - CORS_ALLOW_ORIGINS=*
+    volumes:
+      - ./hokkoku_backend/app:/app/app
+    networks:
+      - hokkoku-network
+
+  linebot:
+    build:
+      context: ./linebot_service
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    env_file:
+      - .env
+    environment:
+      - APP_HOST=0.0.0.0
+      - APP_PORT=8082
+      - APP_RELOAD=false
+      - MOCK_OPENAI=true
+      - OPENAI_MODEL=gpt-4o-mini
+      - CORS_ALLOW_ORIGINS=*
+    volumes:
+      - ./linebot_service/app:/app/app
+    networks:
+      - hokkoku-network
+
+  frontend:
+    build:
+      context: ./hokkoku_frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - hokkoku-network
+
+networks:
+  hokkoku-network:
+    driver: bridge

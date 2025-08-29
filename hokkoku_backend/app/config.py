@@ -1,0 +1,10 @@
+import os
+
+INTENT_THRESHOLD = float(os.getenv("INTENT_THRESHOLD", "0.7"))
+OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+OPENAI_TIMEOUT_QA_MS = int(os.getenv("OPENAI_TIMEOUT_QA_MS", "5000"))
+OPENAI_TIMEOUT_APPLY_MS = int(os.getenv("OPENAI_TIMEOUT_APPLY_MS", "10000"))
+MAX_REPROMPTS = int(os.getenv("MAX_REPROMPTS", "2"))
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+MOCK_OPENAI = False
+CORS_ALLOW_ORIGINS = os.getenv("CORS_ALLOW_ORIGINS", "*")
