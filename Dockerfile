@@ -62,4 +62,4 @@ RUN chown -R www-data:www-data /usr/share/nginx/html
 EXPOSE 80 8000 8082
 
 # Start all services with supervisord
-CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"
+CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
