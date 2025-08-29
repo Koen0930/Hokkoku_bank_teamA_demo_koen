@@ -20,11 +20,11 @@ WORKDIR /app
 
 # install backend deps
 COPY hokkoku_backend/pyproject.toml hokkoku_backend/poetry.lock hokkoku_backend/
-RUN cd hokkoku_backend && poetry config virtualenvs.create false && poetry install --only main --no-interaction --no-ansi
+RUN cd hokkoku_backend && poetry config virtualenvs.create false && poetry install --only main --no-interaction --no-ansi --no-root
 
 # install linebot deps
 COPY linebot_service/pyproject.toml linebot_service/poetry.lock linebot_service/
-RUN cd linebot_service && poetry config virtualenvs.create false && poetry install --only main --no-interaction --no-ansi
+RUN cd linebot_service && poetry config virtualenvs.create false && poetry install --only main --no-interaction --no-ansi --no-root
 
 # --- Final runtime image ---
 FROM python:3.12-slim
